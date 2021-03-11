@@ -1,0 +1,53 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Recipes" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/purple_500</item>
+        <item name="colorOnPrimary">@color/mainLight</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/accentSecond</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@android:color/white</item>
+
+        <!--        <item name="bottomNavigationStyle">@style/Style.BottomNavigation</item>-->
+        <!--        <item name="actionBarStyle">@style/MyTheme.ActionBarStyle</item>-->
+        <!-- Customize your theme here. -->
+    </style>
+
+
+    <style name="Style.RatingBar" parent="Widget.AppCompat.RatingBar.Small">
+        <item name="android:progressTint">@color/accentSecond</item>
+    </style>
+
+    <style name="Theme.Recipes.ActionBar.Transparent" parent="Theme.Recipes">
+        <item name="colorPrimary">@android:color/holo_red_light</item>
+        <item name="windowActionBarOverlay">true</item>
+    </style>
+
+    <style name="Theme.Recipes.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Recipes.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Recipes.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ThemeOverlay.Recipes.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
+
+    <style name="Theme.BottomSheet" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Theme.BottomSheet</item>
+    </style>
+
+    <style name="Style.BottomSheet" parent="Widget.Design.BottomSheet.Modal">
+        <item name="background">@android:color/transparent</item>
+    </style>
+
+</resources>

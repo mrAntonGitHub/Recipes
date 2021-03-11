@@ -1,0 +1,171 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:layout_width="160dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ivAuthorImage"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_man" />
+
+                <TextView
+                    android:id="@+id/tvAuthorName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="6dp"
+                    android:gravity="center"
+                    android:text="Доктор Хауз"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:background="@color/cardBackgroundColor"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mealCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:foreground="?android:selectableItemBackground"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp">
+
+                    <ImageView
+                        android:id="@+id/itemIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:foreground="@drawable/bg_dark_bottom"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_salad" />
+
+                </androidx.cardview.widget.CardView>
+
+                <ImageView
+                    android:id="@+id/ivLike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:elevation="4dp"
+                    android:padding="8dp"
+                    android:src="@drawable/set_like"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/mealCard"/>
+
+                <ImageView
+                    android:id="@+id/ivBookmark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:elevation="4dp"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_bookmark"
+                    app:layout_constraintBottom_toTopOf="@id/mealRating"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/cookingTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:layout_marginStart="6dp"
+                    android:gravity="center"
+                    android:text="10 мин."
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/mealCard"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <RatingBar
+                    android:id="@+id/mealRating"
+                    style="@style/Style.RatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:isIndicator="true"
+                    android:progressBackgroundTint="@color/white"
+                    android:rating="3"
+                    app:layout_constraintBottom_toBottomOf="@id/mealCard"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_round_bottom"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/itemIcon">
+
+                <TextView
+                    android:id="@+id/tvMealName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:maxLines="2"
+                    android:text="French Toast with Berries fdfd df df  d df dod ldfl dl ldfl dl lld lfdlfd l kdfofdo fdood kfodk dfkokdo okdfok fkdokofd ko"
+                    android:textColor="@color/mainDark"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/itemIcon" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/ivIngredients"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_kcal" />
+
+                    <TextView
+                        android:id="@+id/tvkcal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="6dp"
+                        android:gravity="center"
+                        android:text="129 ккал."
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </FrameLayout>
+
+</layout>

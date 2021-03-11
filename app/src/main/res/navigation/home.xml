@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.worldwidemobiledevelopment.recipes.view.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_mealFragment"
+            app:destination="@id/mealFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealFragment"
+        android:name="com.worldwidemobiledevelopment.recipes.view.meal.MealFragment"
+        android:label=""
+        tools:layout="@layout/fragment_meal">
+        <action
+            android:id="@+id/action_mealFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+</navigation>
