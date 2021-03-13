@@ -1,23 +1,12 @@
 package com.worldwidemobiledevelopment.recipes
 
-import android.annotation.SuppressLint
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
-import android.widget.Toast
-import android.widget.Toolbar
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import com.worldwidemobiledevelopment.recipes.utils.setupWithNavController
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 

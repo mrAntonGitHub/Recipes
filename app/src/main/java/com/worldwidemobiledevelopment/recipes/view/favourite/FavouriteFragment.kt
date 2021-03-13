@@ -20,7 +20,7 @@ class FavouriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.favourite_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_favourite, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

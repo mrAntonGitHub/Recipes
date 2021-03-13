@@ -21,7 +21,7 @@ import com.worldwidemobiledevelopment.recipes.utils.decorators.InsetItemDecorati
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Section
-import kotlinx.android.synthetic.main.home_fragment.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import java.io.IOException
 
 const val INSET_TYPE_KEY = "inset_type"
@@ -46,7 +46,7 @@ class HomeFragment : Fragment(), CardItem.MealAction {
     lateinit var popularMeals: List<SmallCardItem>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.home_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

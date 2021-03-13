@@ -9,5 +9,5 @@
         android:id="@+id/productsFragment"
         android:name="com.worldwidemobiledevelopment.recipes.view.products.ProductsFragment"
         android:label="@string/title_products"
-        tools:layout="@layout/products_fragment" />
+        tools:layout="@layout/fragment_products" />
 </navigation>

@@ -20,7 +20,7 @@ class CategoriesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.categories_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_categories, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

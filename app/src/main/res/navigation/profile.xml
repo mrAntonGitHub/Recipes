@@ -9,5 +9,5 @@
         android:id="@+id/profileFragment"
         android:name="com.worldwidemobiledevelopment.recipes.view.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/profile_fragment" />
+        tools:layout="@layout/fragment_profile" />
 </navigation>

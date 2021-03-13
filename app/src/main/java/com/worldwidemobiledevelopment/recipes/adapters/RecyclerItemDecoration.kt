@@ -83,7 +83,7 @@ class RecyclerItemDecoration(var context: Context, var headerOffset: Int, var st
 
     private fun inflateHeader(recyclerView: RecyclerView): View {
         return LayoutInflater.from(context)
-            .inflate(R.layout.row_section_header, recyclerView, false)
+            .inflate(R.layout.item_section_header, recyclerView, false)
     }
 
     interface SectionCallback {

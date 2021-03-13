@@ -21,7 +21,7 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.AppCompat.Light"
-            app:contentScrim="@android:color/white"
+            app:contentScrim="@color/cardBackgroundColor"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -208,8 +208,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_ingredient"
-                    tools:itemCount="10"/>
+                    tools:itemCount="10"
+                    tools:listitem="@layout/item_ingredient" />
 
             </LinearLayout>
 
@@ -238,9 +238,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:orientation="vertical"
                 android:background="@drawable/bg_round_bottom"
                 android:backgroundTint="@color/cardBackgroundColor"
+                android:orientation="vertical"
                 android:paddingStart="24dp"
                 android:paddingEnd="24dp">
 
@@ -262,13 +262,4 @@
 
 
     </androidx.core.widget.NestedScrollView>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:src="@drawable/set_like"
-        app:fabSize="mini"
-        app:layout_anchor="@id/main.appbar"
-        app:layout_anchorGravity="bottom|right|end" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

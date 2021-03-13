@@ -9,5 +9,5 @@
         android:id="@+id/favouriteFragment"
         android:name="com.worldwidemobiledevelopment.recipes.view.favourite.FavouriteFragment"
         android:label="@string/title_favourite"
-        tools:layout="@layout/favourite_fragment" />
+        tools:layout="@layout/fragment_favourite" />
 </navigation>
