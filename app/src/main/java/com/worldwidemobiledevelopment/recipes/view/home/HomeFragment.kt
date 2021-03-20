@@ -9,20 +9,29 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
+import com.worldwidemobiledevelopment.recipes.Application
 import com.worldwidemobiledevelopment.recipes.R
 import com.worldwidemobiledevelopment.recipes.data.*
+import com.worldwidemobiledevelopment.recipes.repository.Repository
 import com.worldwidemobiledevelopment.recipes.utils.decorators.CarouselItemDecoration
 import com.worldwidemobiledevelopment.recipes.utils.decorators.InsetItemDecoration
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Section
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
 
 const val INSET_TYPE_KEY = "inset_type"
 const val INSET = "inset"
@@ -30,6 +39,8 @@ const val INSET = "inset"
 class HomeFragment : Fragment(), CardItem.MealAction {
 
     lateinit var bottomSheet : BottomSheetDialog
+
+
 
     private lateinit var viewModel: HomeViewModel
 
@@ -52,6 +63,11 @@ class HomeFragment : Fragment(), CardItem.MealAction {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+
+
+        viewModel.b.observe(requireActivity()){
+            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+        }
 
         setupActionBar()
         fetchJson()

@@ -31,12 +31,12 @@ class IngredientsAdapter(private val ingredients: List<Pair<String, String>>, pr
     inner class ViewHolder(val item: View) : RecyclerView.ViewHolder(item) {
         val ingredientName: TextView = item.ingredientName
         val ingredientVolume: TextView = item.ingredientVolume
-        private val ingredientAddToCart: Button = item.ingredientAddToCart
+//        private val ingredientAddToCart: Button = item.ingredientAddToCart
 
         init {
-            ingredientAddToCart.setOnClickListener {
-                ingredientsAction.addToCart(ingredients[adapterPosition])
-            }
+//            ingredientAddToCart.setOnClickListener {
+//                ingredientsAction.addToCart(ingredients[adapterPosition])
+//            }
         }
 
     }

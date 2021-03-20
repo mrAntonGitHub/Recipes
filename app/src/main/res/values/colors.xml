@@ -16,9 +16,12 @@
     <color name="bg">#F7F6F2</color>
     <color name="mealBackgroundColor">#F8F9FC</color>
 
+    <color name="ratingBarUnselectedStar">#D3D3D3</color>
+
     <color name="cardBackgroundColor">#F7F8FC</color>
 
     <color name="lightGray">#FAFAFA</color>
+    <color name="gray">#717274</color>
 
     <color name="transparent_cardView">#D9FFFFFF</color>
     <color name="light_blue_600">#FF039BE5</color>

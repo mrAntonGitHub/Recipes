@@ -7,5 +7,5 @@ data class Step(
     @SerializedName("description")
     val description: String,
     @SerializedName("step_time")
-    val stepTime: Int
+    val stepTime: Int,
 )

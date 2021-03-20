@@ -27,13 +27,13 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <technolifestyle.com.imageslider.FlipperLayout
-                android:id="@+id/flipper_layout"
+                android:id="@+id/flipperLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:background="@color/accent" />
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/main.toolbar"
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_marginTop="20dp"
@@ -60,7 +60,8 @@
                 android:backgroundTint="@color/cardBackgroundColor"
                 android:orientation="vertical"
                 android:paddingStart="24dp"
-                android:paddingEnd="24dp">
+                android:paddingEnd="24dp"
+                android:paddingBottom="@dimen/meal_elements_padding">
 
                 <TextView
                     android:id="@+id/mealName"
@@ -77,23 +78,27 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/mealCkal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="150 ккал." />
 
                     <TextView
+                        android:id="@+id/mealFats"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="Жиры - 0.17г" />
 
                     <TextView
+                        android:id="@+id/mealProtein"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="Белки 0.26г" />
 
                     <TextView
+                        android:id="@+id/mealCarb"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -104,11 +109,11 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tvRating"
+                        android:id="@+id/rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -119,13 +124,13 @@
                         app:drawableStartCompat="@drawable/ic_star"
                         app:drawableTint="@color/accent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/tvCookingTime"
+                        app:layout_constraintEnd_toStartOf="@id/cookingTime"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tvCookingTime"
+                        android:id="@+id/cookingTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -134,132 +139,390 @@
                         android:textColor="@color/mainDark"
                         android:textSize="20dp"
                         app:drawableStartCompat="@drawable/ic_time"
-                        app:drawableTint="@color/accent"
+                        app:drawableTint="@color/mainDark"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/tvCookingLevel"
-                        app:layout_constraintStart_toEndOf="@id/tvRating"
+                        app:layout_constraintEnd_toStartOf="@id/cookingLevel"
+                        app:layout_constraintStart_toEndOf="@id/rating"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tvCookingLevel"
+                        android:id="@+id/cookingLevel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:drawablePadding="8dp"
-                        android:text="Просто"
+                        android:text="Легко"
                         android:textColor="@color/mainDark"
                         android:textSize="20dp"
-                        app:drawableStartCompat="@drawable/ic_search"
-                        app:drawableTint="@color/accent"
+                        app:drawableStartCompat="@drawable/ic_level"
+                        app:drawableTint="@color/mainDark"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/tvCookingTime"
+                        app:layout_constraintStart_toEndOf="@id/cookingTime"
                         app:layout_constraintTop_toTopOf="parent" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/mealDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Мясо, которое используется для приготовления пельменей, несомненно служит богатым источником белка. Например, свинина богата лизином, который способствует профилактике остеопороза, укрепляет костную ткань. Говядина или телятина очень хорошо усваиваются организмом человека и сохраняют свой полезный и ценный состав даже в процессе тепловой обработки. " />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/userContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_round"
+                android:backgroundTint="@color/cardBackgroundColor"
+                android:orientation="horizontal"
+                android:paddingStart="24dp"
+                android:paddingTop="@dimen/meal_elements_padding"
+                android:paddingEnd="24dp"
+                android:paddingBottom="@dimen/meal_elements_padding">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/userAvatar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_man" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/ic_man" />
-
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/userName"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:text="Мария Петровна Иванова"
+                        android:textColor="@color/mainDark"
+                        android:textSize="16sp" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Мария Петровна Иванова"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Специалист"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/userLevel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Специалист"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="20dp"
-                    android:background="?attr/dividerHorizontal" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="Ингридиенты"
-                    android:textColor="@color/mainDark"
-                    android:textSize="24sp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:itemCount="10"
-                    tools:listitem="@layout/item_ingredient" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_round"
+                android:backgroundTint="@color/cardBackgroundColor"
                 android:orientation="vertical"
                 android:paddingStart="24dp"
-                android:paddingEnd="24dp">
+                android:paddingTop="@dimen/meal_elements_padding"
+                android:paddingEnd="24dp"
+                android:paddingBottom="@dimen/meal_elements_padding">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ингридиенты"
+                        android:textColor="@color/mainDark"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ingredientsRv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="10"
+                    tools:listitem="@layout/item_ingredient" />
+
+                <Button
+                    android:id="@+id/ingredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="Добавить в список покупок"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_round"
+                android:backgroundTint="@color/cardBackgroundColor"
+                android:orientation="vertical"
+                android:paddingStart="24dp"
+                android:paddingTop="@dimen/meal_elements_padding"
+                android:paddingBottom="@dimen/meal_elements_padding">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Приготовление"
                     android:textColor="@color/mainDark"
-                    android:textSize="24sp" />
+                    android:textSize="20sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/stepsRv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/item_step" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/bg_round_bottom"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_round"
+                android:backgroundTint="@color/cardBackgroundColor"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingStart="24dp"
+                android:paddingTop="@dimen/meal_elements_padding"
+                android:paddingBottom="@dimen/meal_elements_padding">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_info"
+                    app:tint="@color/mainDark" />
+
+                <TextView
+                    android:id="@+id/additionalInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="Если останутся небольшие вкрапления сварившегося желтка - ничего страшного, они разойдутся при вымешивании теста."
+                    android:textColor="@color/mainDark"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_round"
                 android:backgroundTint="@color/cardBackgroundColor"
                 android:orientation="vertical"
                 android:paddingStart="24dp"
-                android:paddingEnd="24dp">
+                android:paddingTop="@dimen/meal_elements_padding"
+                android:paddingBottom="@dimen/meal_elements_padding">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Комментарии"
+                    android:text="Оцените рецепт"
                     android:textColor="@color/mainDark"
-                    android:textSize="24sp" />
+                    android:textSize="20sp" />
 
-                <ListView
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="Поделитесь своим мнением"
+                    android:textColor="@color/mainDark"
+                    android:textSize="12sp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:paddingEnd="24dp">
+
+                    <ImageView
+                        android:id="@+id/firstStar"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="4dp"
+                        android:src="@drawable/set_stars"
+                        app:layout_constraintEnd_toStartOf="@id/secondStar"
+                        app:layout_constraintHorizontal_chainStyle="spread"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/secondStar"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="4dp"
+                        android:src="@drawable/set_stars"
+                        app:layout_constraintEnd_toStartOf="@id/thirdStar"
+                        app:layout_constraintStart_toEndOf="@id/firstStar"
+                        app:layout_constraintTop_toTopOf="@id/firstStar" />
+
+                    <ImageView
+                        android:id="@+id/thirdStar"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="4dp"
+                        android:src="@drawable/set_stars"
+                        app:layout_constraintEnd_toStartOf="@id/fourthStar"
+                        app:layout_constraintStart_toEndOf="@id/secondStar"
+                        app:layout_constraintTop_toTopOf="@id/firstStar" />
+
+                    <ImageView
+                        android:id="@+id/fourthStar"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="4dp"
+                        android:src="@drawable/set_stars"
+                        app:layout_constraintEnd_toStartOf="@id/fifthStar"
+                        app:layout_constraintStart_toEndOf="@id/thirdStar"
+                        app:layout_constraintTop_toTopOf="@id/firstStar" />
+
+                    <ImageView
+                        android:id="@+id/fifthStar"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="4dp"
+                        android:src="@drawable/set_stars"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/fourthStar"
+                        app:layout_constraintTop_toTopOf="@id/firstStar" />
+
+                    <EditText
+                        android:id="@+id/comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:visibility="gone"
+                        android:textSize="16sp"
+                        android:gravity="top"
+                        android:background="@drawable/bg_frame"
+                        android:hint="Поделитесь впечатлениями (необязательно)"
+                        android:minHeight="160dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/firstStar" />
+
+                    <Button
+                        android:id="@+id/writeComment"
+                        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:padding="0dp"
+                        android:text="Напишите отзыв"
+                        android:textAllCaps="false"
+                        android:textColor="@color/accent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/comment" />
+
+                    <Button
+                        android:id="@+id/sendComment"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="0dp"
+                        android:text="Отправить"
+                        android:textAllCaps="false"
+                        android:textColor="@color/accent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/writeComment" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingTop="@dimen/meal_elements_padding"
+            android:paddingEnd="24dp"
+            android:paddingBottom="@dimen/meal_elements_padding">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Комментарии"
+                android:textColor="@color/mainDark"
+                android:textSize="24sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/commentsRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_comment" />
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="24dp"
+            android:background="?attr/dividerHorizontal" />
 
-    </androidx.core.widget.NestedScrollView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingTop="@dimen/meal_elements_padding"
+            android:paddingEnd="24dp"
+            android:paddingBottom="@dimen/meal_elements_padding">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_level"
+                android:drawableTint="@color/mainDark"
+                android:text="Другие рецепты от автора"
+                android:textColor="@color/mainDark"
+                android:textSize="24sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/otherRecipesRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/item_comment" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView></androidx.coordinatorlayout.widget.CoordinatorLayout>

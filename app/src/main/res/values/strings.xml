@@ -105,6 +105,8 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="recommend">Рекомендуем</string>
     <string name="day_meal">Блюдо дня</string>
+    <string name="share">Поделиться</string>
+    <string name="to_bookmark">В закладки</string>
 
 
 </resources>

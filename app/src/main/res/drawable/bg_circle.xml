@@ -4,14 +4,14 @@
         >
         <shape
             android:shape="oval">
-            <solid android:color="@color/purple_500" />
+            <solid android:color="@color/white" />
         </shape>
     </item>
     <item>
         <shape
             android:shape="oval">
             <stroke android:width="2dp"
-                android:color="@color/purple_500"/>
+                android:color="@color/white"/>
         </shape>
     </item>
 </layer-list>

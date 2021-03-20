@@ -1,15 +1,35 @@
 package com.worldwidemobiledevelopment.recipes.view.home
 
 import androidx.lifecycle.*
+import com.worldwidemobiledevelopment.recipes.Application
+import com.worldwidemobiledevelopment.recipes.repository.Repository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class HomeViewModel : ViewModel() {
+    @Inject
+    lateinit var repository: Repository
+
+    private val _b = MutableLiveData<List<String>>()
+    val b : LiveData<List<String>>
+        get() = _b
 
 //    var menuAdapter: MenuAdapter? = null
 
     init {
-//        initMenu()
+        Application.application.appComponent.inject(this)
+
+        viewModelScope.launch {
+            repository.getFoo()
+                .collect {
+                    _b.value = it
+                }
+        }
     }
 
       // Dimensions
