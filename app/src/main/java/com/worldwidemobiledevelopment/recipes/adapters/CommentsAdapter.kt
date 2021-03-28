@@ -29,13 +29,13 @@ class CommentsAdapter(private val comments: List<Comment>, private val commentAc
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.apply {
-            if (comments[position].userAvatar != null){
-                avatar.setImageURI(Uri.parse(comments[position].userAvatar))
+            if (comments[position].avatar != null){
+                avatar.setImageURI(Uri.parse(comments[position].avatar))
             }else{
                 avatar.setImageResource(R.drawable.ic_man)
             }
-            name.text = comments[position].userName
-            status.text = comments[position].userStatus
+            name.text = comments[position].name
+            status.text = comments[position].status
             rating.numStars = comments[position].rating
             comment.text = comments[position].commentText
         }

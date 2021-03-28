@@ -19,6 +19,20 @@
     </style>
 
 
+    <style name="Theme.Recipes.StatusBar.SplashScreen" parent="Theme.Recipes">
+        <item name="colorPrimaryDark">@color/splashScreenBackground</item>
+        <item name="android:statusBarColor">@color/splashScreenBackground</item>
+        <item name="colorPrimary">@color/mainLight</item>
+    </style>
+
+    <style name="Theme.Recipes.StatusBar.SignUp" parent="Theme.Recipes">
+        <item name="colorPrimaryDark">@color/registration_background_color</item>
+        <item name="android:statusBarColor">@color/registration_background_color</item>
+        <item name="colorPrimary">@color/mainLight</item>
+    </style>
+
+
+
     <style name="Style.RatingBar" parent="Widget.AppCompat.RatingBar.Small">
         <item name="android:progressTint">@color/accentSecond</item>
     </style>

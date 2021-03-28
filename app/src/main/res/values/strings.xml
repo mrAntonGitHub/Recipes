@@ -107,6 +107,8 @@
     <string name="day_meal">Блюдо дня</string>
     <string name="share">Поделиться</string>
     <string name="to_bookmark">В закладки</string>
+    <string name="email">Почта</string>
+    <string name="password">Пароль</string>
 
 
 </resources>

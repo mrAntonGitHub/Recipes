@@ -66,7 +66,7 @@ open class CardItem(private val recipe: Recipe, private val mealAction: MealActi
         viewBinding.tvMealName.text = recipe.name
         Glide
             .with(viewBinding.itemIcon.context)
-            .load(R.drawable.ic_main_dish)
+            .load(R.drawable.ic_empty_plate)
             .override(800, 700)
             .into(viewBinding.itemIcon)
 

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/registration_background_color">
+
+    <ImageButton
+        android:id="@+id/skipRegistration"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:src="@drawable/ic_skip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/gray" />
+
+    <ImageView
+        android:id="@+id/appName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:src="@drawable/ic_app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:autofillHints="Почта"
+        android:background="@null"
+        android:elevation="1dp"
+        android:hint="@string/email"
+        app:boxStrokeColor="@color/mainLight"
+        app:boxStrokeErrorColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/mainLight"
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/gray"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:autofillHints="Пароль"
+        android:elevation="1dp"
+        android:hint="Пароль"
+        android:inputType="textPassword"
+        app:boxStrokeColor="@color/mainLight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailLayout"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_lock"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/gray"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/holo_red_light"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/forgotPassword"
+        app:layout_constraintStart_toStartOf="@id/passwordLayout"
+        app:layout_constraintTop_toBottomOf="@id/passwordLayout" />
+
+    <Button
+        android:id="@+id/forgotPassword"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:text="Забыли пароль?"
+        android:textAllCaps="false"
+        android:textColor="@color/additionalColor"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/passwordLayout"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
+
+    <Button
+        android:id="@+id/signIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bg_round_button"
+        android:text="Войти"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/forgotPassword" />
+
+    <ProgressBar
+        android:id="@+id/signInLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:progressTint="@color/mainDark"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/forgotPassword" />
+
+
+    <View
+        android:id="@+id/firstView"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@android:drawable/divider_horizontal_bright"
+        app:layout_constraintBottom_toBottomOf="@id/or"
+        app:layout_constraintEnd_toStartOf="@id/or"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signIn"
+        app:layout_constraintTop_toTopOf="@id/or" />
+
+    <TextView
+        android:id="@+id/or"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:text="ИЛИ"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
+
+    <View
+        android:id="@+id/secondView"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@android:drawable/divider_horizontal_bright"
+        app:layout_constraintBottom_toBottomOf="@id/or"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/or"
+        app:layout_constraintTop_toBottomOf="@id/signIn"
+        app:layout_constraintTop_toTopOf="@id/or" />
+
+    <Button
+        android:id="@+id/signInWithGoogle"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/googleg_standard_color_18"
+        android:drawableTint="@color/mainLight"
+        android:text="Войти с помощью Google"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/or" />
+
+    <Button
+        android:id="@+id/signInWithFacebook"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/ic_facebook"
+        android:drawableTint="@color/mainLight"
+        android:text="Войти с помощью Facebook"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signInWithGoogle" />
+
+    <TextView
+        android:id="@+id/doNotHave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="У Вас нет аккаунта?"
+        app:layout_constraintBottom_toBottomOf="@id/signUp"
+        app:layout_constraintEnd_toStartOf="@id/signUp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/signUp" />
+
+    <Button
+        android:id="@+id/signUp"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:padding="0dp"
+        android:paddingStart="4dp"
+        android:text="Зарегистрироваться"
+        android:textAllCaps="false"
+        android:textColor="@color/additionalColor"
+        app:layout_constraintBottom_toTopOf="@id/signInAsGuest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/doNotHave" />
+
+
+    <Button
+        android:id="@+id/signInAsGuest"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:padding="4dp"
+        android:text="Войти как Гость"
+        android:textAllCaps="false"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
