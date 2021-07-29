@@ -11,9 +11,8 @@ import com.worldwidemobiledevelopment.recipes.R
 import com.worldwidemobiledevelopment.recipes.data.Comment
 import com.worldwidemobiledevelopment.recipes.data.CookingStep
 import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.item_step.view.*
 
-
+// todo refactor + delegates
 class CommentsAdapter(private val comments: List<Comment>, private val commentAction: CommentAction) :
     RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
 
@@ -29,13 +28,13 @@ class CommentsAdapter(private val comments: List<Comment>, private val commentAc
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.apply {
-            if (comments[position].avatar != null){
-                avatar.setImageURI(Uri.parse(comments[position].avatar))
+            if (comments[position].commentAuthorAvatar != null){
+                avatar.setImageURI(Uri.parse(comments[position].commentAuthorAvatar))
             }else{
                 avatar.setImageResource(R.drawable.ic_man)
             }
-            name.text = comments[position].name
-            status.text = comments[position].status
+            name.text = comments[position].commentAuthorName
+            status.text = comments[position].commentAuthorStatus
             rating.numStars = comments[position].rating
             comment.text = comments[position].commentText
         }
@@ -44,7 +43,7 @@ class CommentsAdapter(private val comments: List<Comment>, private val commentAc
     inner class ViewHolder(val item: View) : RecyclerView.ViewHolder(item) {
         val avatar : CircleImageView = item.findViewById(R.id.avatar)
         val name : TextView = item.findViewById(R.id.name)
-        val status : TextView = item.findViewById(R.id.status)
+        val status : TextView = item.findViewById(R.id.level)
         val rating : RatingBar = item.findViewById(R.id.rating)
         val comment : TextView = item.findViewById(R.id.comment)
     }

@@ -9,7 +9,7 @@ import com.worldwidemobiledevelopment.recipes.R
 import com.worldwidemobiledevelopment.recipes.data.CookingStep
 import kotlinx.android.synthetic.main.item_step.view.*
 
-
+// todo refactor + delegates
 class CookingStepsAdapter(private val step: List<CookingStep>, private val stepAction: StepAction) :
     RecyclerView.Adapter<CookingStepsAdapter.ViewHolder>() {
 
@@ -36,7 +36,7 @@ class CookingStepsAdapter(private val step: List<CookingStep>, private val stepA
 
             val images = step[position].imageUrlSet
 
-            val adapter = images?.let { ImagesAdapter(it) }
+            val adapter = images?.let { StepImagesAdapter() }
             stepImages.adapter = adapter
 
         }

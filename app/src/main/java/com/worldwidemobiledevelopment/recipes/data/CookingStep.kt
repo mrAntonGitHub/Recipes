@@ -1,7 +1,8 @@
 package com.worldwidemobiledevelopment.recipes.data
 
+import android.net.Uri
+
 data class CookingStep (
-    val description: String,
-    val stepTime: Int? = null,
-    val imageUrlSet: List<String>? = null
+    var description: String,
+    var imageUrlSet: MutableList<String>? = mutableListOf()
 )

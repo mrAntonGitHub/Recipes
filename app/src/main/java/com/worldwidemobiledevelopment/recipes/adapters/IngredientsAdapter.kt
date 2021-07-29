@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.worldwidemobiledevelopment.recipes.R
 import kotlinx.android.synthetic.main.item_ingredient.view.*
 
+// todo refactor + delegates
 class IngredientsAdapter(private val ingredients: List<Pair<String, String>>, private val ingredientsAction: IngredientsAction) : RecyclerView.Adapter<IngredientsAdapter.ViewHolder>() {
 
     interface IngredientsAction {

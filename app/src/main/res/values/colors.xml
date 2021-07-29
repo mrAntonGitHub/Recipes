@@ -27,7 +27,10 @@
     <color name="additionalColor">#2D8CFF</color>
 
     <color name="lightGray">#FAFAFA</color>
+    <color name="lightGraySecond">#80DADADA</color>
     <color name="gray">#717274</color>
+
+    <color name="black_transparent_50">#80000000</color>
 
     <color name="transparent_cardView">#D9FFFFFF</color>
     <color name="light_blue_600">#FF039BE5</color>

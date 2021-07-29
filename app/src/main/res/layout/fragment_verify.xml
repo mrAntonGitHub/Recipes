@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/registration_background_color">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="Активация аккаунта"
+        app:titleTextColor="@color/gray" />
+
+    <TextView
+        android:id="@+id/verificationInfo"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:text="Перейдите по ссылке в письме для активации аккаунта"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/resendLinkTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Отправить повторно через:"
+        app:layout_constraintBottom_toBottomOf="@+id/resendLink"
+        app:layout_constraintEnd_toStartOf="@id/resendLink"
+        app:layout_constraintStart_toStartOf="@id/verificationInfo"
+        app:layout_constraintTop_toTopOf="@+id/resendLink" />
+
+    <Button
+        android:id="@+id/resendLink"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/additionalColor"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="@+id/verificationInfo"
+        app:layout_constraintStart_toEndOf="@id/resendLinkTitle"
+        app:layout_constraintTop_toBottomOf="@+id/verificationInfo"
+        tools:text="60 секунд" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/holo_red_light"
+        app:layout_constraintStart_toStartOf="@id/signIn"
+        app:layout_constraintEnd_toEndOf="@id/signIn"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone"
+        android:text="Вам необходимо подтвердить почту"
+        app:layout_constraintBottom_toTopOf="@id/signIn" />
+
+
+    <Button
+        android:id="@+id/signIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/bg_round_button"
+        android:backgroundTint="@color/mainDark"
+        android:text="Войти"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/registrationLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:progressTint="@color/mainDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

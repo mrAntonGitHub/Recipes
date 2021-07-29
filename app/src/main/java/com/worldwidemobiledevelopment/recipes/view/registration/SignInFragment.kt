@@ -4,47 +4,43 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.worldwidemobiledevelopment.recipes.R
+import com.worldwidemobiledevelopment.recipes.repository.firebaseRepository.ExceptionEmailExpected
+import com.worldwidemobiledevelopment.recipes.repository.firebaseRepository.ExceptionPasswordExpected
+import com.worldwidemobiledevelopment.recipes.utils.DynamicTextWatcher
 import kotlinx.android.synthetic.main.fragment_sign_in.*
-import kotlinx.android.synthetic.main.fragment_sign_in.email
-import kotlinx.android.synthetic.main.fragment_sign_in.message
-import kotlinx.android.synthetic.main.fragment_sign_in.password
-import kotlinx.android.synthetic.main.fragment_sign_in.signUp
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+
 
 class SignInFragment(private val signInAction: SignInAction) : Fragment() {
 
     interface SignInAction {
         fun onSignUp()
-        fun onSignIn(email: String, password: String)
         fun onSignUpWithGoogle()
         fun onSignUpWithFacebook()
+        fun onSignIn(email: String, password: String)
+        fun onForgotPassword()
         fun onSkipRegistration()
     }
 
-    private lateinit var viewModel: RegistrationViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_sign_in, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(RegistrationViewModel::class.java)
 
         signInAsGuest.setOnClickListener {
             signInAction.onSkipRegistration()
         }
 
-        skipRegistration.setOnClickListener{
+        forgotPassword.setOnClickListener {
+            signInAction.onForgotPassword()
+        }
+
+        skipRegistration.setOnClickListener {
             signInAction.onSkipRegistration()
         }
 
@@ -63,28 +59,43 @@ class SignInFragment(private val signInAction: SignInAction) : Fragment() {
         signIn.setOnClickListener {
             when {
                 email.text?.toString()?.trim().isNullOrEmpty() -> {
-                    message.text = "Введите почту"
-                    message.visibility = View.VISIBLE
+                    emailLayout.error = ExceptionEmailExpected
                 }
                 password.text?.toString()?.trim().isNullOrEmpty() -> {
-                    message.text = "Введите пароль"
-                    message.visibility = View.VISIBLE
+                    passwordLayout.error = ExceptionPasswordExpected
                 }
                 else -> {
-                    signIn.visibility = View.GONE
-                    signInLoading.visibility = View.VISIBLE
-                    CoroutineScope(Dispatchers.IO).launch {
-                        signInAction.onSignIn(email.text.toString(), password.text.toString())
-                    }
+                    signIn()
                 }
+            }
+        }
+
+        email.addTextChangedListener(DynamicTextWatcher(
+            onChanged = { _, _, _, _ ->
+                emailLayout.error = null
+            }
+        ))
+
+        password.addTextChangedListener(DynamicTextWatcher(
+            onChanged = { _, _, _, _ ->
+                passwordLayout.error = null
+            }
+        ))
+
+        password.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                signIn.callOnClick()
+                true
+            } else {
+                false
             }
         }
 
     }
 
-    fun showError(string: String) {
+    fun showException(string: String) {
         signInLoading.visibility = View.GONE
-        signIn.visibility = View.VISIBLE
+        signIn.text = resources.getText(R.string.enter)
         signIn.isEnabled = true
         email.isEnabled = true
         password.isEnabled = true
@@ -92,5 +103,12 @@ class SignInFragment(private val signInAction: SignInAction) : Fragment() {
         message.visibility = View.VISIBLE
     }
 
-
+    private fun signIn() {
+        signIn.text = ""
+        signIn.isEnabled = false
+        email.isEnabled = false
+        password.isEnabled = false
+        signInLoading.visibility = View.VISIBLE
+        signInAction.onSignIn(email.text.toString(), password.text.toString())
+    }
 }

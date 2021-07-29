@@ -2,7 +2,6 @@ package com.worldwidemobiledevelopment.recipes.view.home
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.TextView
 import android.widget.Toast
@@ -14,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import com.worldwidemobiledevelopment.recipes.R
 import com.worldwidemobiledevelopment.recipes.data.*
@@ -24,12 +22,7 @@ import com.xwray.groupie.Group
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Section
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
-import java.io.BufferedReader
 import java.io.IOException
-import java.io.InputStreamReader
 
 const val INSET_TYPE_KEY = "inset_type"
 const val INSET = "inset"
@@ -155,43 +148,43 @@ class HomeFragment : Fragment(), CardItem.MealAction {
 
     }
 
-    fun List<Recipe>.toRecipeRight(): List<RecipeRight> {
-        val list = mutableListOf<RecipeRight>()
-        this.forEach {
-            val steps = mutableListOf<StepRight>()
-            it.steps.forEach {
-                steps.add(StepRight(it.description, it.stepTime, null))
-            }
-
-            //text = грамм:400,ккал:1012.0,белки:66.76,жиры:80.76,углеводы:0.0
-            val split = it.caloriesInfoPerServing.split("[:,]".toRegex())
-
-            list.add(
-                RecipeRight(
-                    it.name,
-                    it.description,
-                    steps,
-                    it.portionsNumber,
-                    it.additionalInfo,
-                    it.complexity,
-                    it.tags,
-                    it.ingredientsList,
-                    it.tagsDiet,
-                    it.cookingMinutes,
-                    split[1],
-                    split[3],
-                    split[5],
-                    split[7],
-                    split[9],
-                    null,
-                    0,
-                    User(),
-                    null, null
-                )
-            )
-        }
-        return list
-    }
+//    fun List<Recipe>.toRecipeRight(): List<Recipe> {
+//        val list = mutableListOf<Recipe>()
+//        this.forEach {
+//            val steps = mutableListOf<StepRight>()
+//            it.steps.forEach {
+//                steps.add(StepRight(it.description, it.stepTime, null))
+//            }
+//
+//            //text = грамм:400,ккал:1012.0,белки:66.76,жиры:80.76,углеводы:0.0
+//            val split = it.caloriesInfoPerServing.split("[:,]".toRegex())
+//
+//            list.add(
+//                Recipe(
+//                    it.name,
+//                    it.description,
+//                    steps,
+//                    it.portionsNumber,
+//                    it.additionalInfo,
+//                    it.complexity,
+//                    it.tags,
+//                    it.ingredientsList,
+//                    it.tagsDiet,
+//                    it.cookingMinutes,
+//                    split[1],
+//                    split[3],
+//                    split[5],
+//                    split[7],
+//                    split[9],
+//                    null,
+//                    0,
+//                    User(),
+//                    null, null, null
+//                )
+//            )
+//        }
+//        return list
+//    }
 
     private fun getJsonFromAssets(context: Context, fileName: String?): String? {
         val jsonString: String
@@ -240,35 +233,34 @@ class HomeFragment : Fragment(), CardItem.MealAction {
     }
 
     private fun makeColumnSection(groupieAdapter: GroupieAdapter) {
-        this.popularMealsSection = Section(HeaderItem(
-            R.string.popular,
-            iconResId = R.drawable.ic_sort
-        ) {
-            Toast.makeText(requireActivity(), "Sort Clicked!", Toast.LENGTH_SHORT).show()
-            popularMealsSection.update(popularMeals.reversed())
-            bottomSheet = BottomSheetDialog(requireContext(), R.style.Theme_BottomSheet)
-            val view = LayoutInflater.from(requireContext()).inflate(
-                R.layout.sheet_sorting,
-                requireActivity().findViewById(R.id.sortingSheet)
+        this.popularMealsSection =
+            Section(HeaderItem(R.string.popular, iconResId = R.drawable.ic_sort)
+            {
+                Toast.makeText(requireActivity(), "Sort Clicked!", Toast.LENGTH_SHORT).show()
+                popularMealsSection.update(popularMeals.reversed())
+                bottomSheet = BottomSheetDialog(requireContext(), R.style.Theme_BottomSheet)
+                val view = LayoutInflater.from(requireContext()).inflate(
+                    R.layout.sheet_sorting,
+                    requireActivity().findViewById(R.id.sortingSheet)
+                )
+
+                bottomSheet.setContentView(view)
+                bottomSheet.show()
+
+                bottomSheet.findViewById<TextView>(R.id.tvSortRatingUp)?.setOnClickListener {
+                    Toast.makeText(requireContext(), "UP", Toast.LENGTH_SHORT).show()
+                    bottomSheet.dismissWithAnimation = true
+                    bottomSheet.dismiss()
+                }
+                bottomSheet.findViewById<TextView>(R.id.tvSortRatingDown)?.setOnClickListener {
+                    Toast.makeText(requireContext(), "DOWN", Toast.LENGTH_SHORT).show()
+                    bottomSheet.dismiss()
+                }
+
+                // You can also do this by forcing a change with payload
+                rvHome.post { rvHome.invalidateItemDecorations() }
+            }
             )
-
-            bottomSheet.setContentView(view)
-            bottomSheet.show()
-
-            bottomSheet.findViewById<TextView>(R.id.tvSortRatingUp)?.setOnClickListener {
-                Toast.makeText(requireContext(), "UP", Toast.LENGTH_SHORT).show()
-                bottomSheet.dismissWithAnimation = true
-                bottomSheet.dismiss()
-            }
-            bottomSheet.findViewById<TextView>(R.id.tvSortRatingDown)?.setOnClickListener {
-                Toast.makeText(requireContext(), "DOWN", Toast.LENGTH_SHORT).show()
-                bottomSheet.dismiss()
-            }
-
-            // You can also do this by forcing a change with payload
-            rvHome.post { rvHome.invalidateItemDecorations() }
-        }
-        )
         popularMealsSection.addAll(popularMeals)
         groupieAdapter.add(popularMealsSection)
     }

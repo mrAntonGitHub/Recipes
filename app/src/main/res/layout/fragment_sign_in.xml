@@ -41,7 +41,8 @@
         android:elevation="1dp"
         android:hint="@string/email"
         app:boxStrokeColor="@color/mainLight"
-        app:boxStrokeErrorColor="@color/white"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appName">
@@ -53,7 +54,7 @@
             android:backgroundTint="@color/mainLight"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/gray"
+            android:drawableTint="@color/mainLight"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,17 +64,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:autofillHints="Пароль"
         android:elevation="1dp"
         android:hint="Пароль"
         android:inputType="textPassword"
         app:boxStrokeColor="@color/mainLight"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emailLayout"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/mainLight">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
@@ -81,7 +84,7 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/gray"
+            android:drawableTint="@color/mainLight"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +97,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@id/forgotPassword"
         app:layout_constraintStart_toStartOf="@id/passwordLayout"
-        app:layout_constraintTop_toBottomOf="@id/passwordLayout" />
+        app:layout_constraintTop_toTopOf="@id/forgotPassword"/>
 
     <Button
         android:id="@+id/forgotPassword"
@@ -109,12 +112,24 @@
         app:layout_constraintEnd_toEndOf="@id/passwordLayout"
         app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
 
+    <ProgressBar
+        android:id="@+id/signInLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
+        android:translationZ="3dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/forgotPassword" />
+
     <Button
         android:id="@+id/signIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/bg_round_button"
@@ -122,19 +137,6 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/forgotPassword" />
-
-    <ProgressBar
-        android:id="@+id/signInLoading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:progressTint="@color/mainDark"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/forgotPassword" />
-
 
     <View
         android:id="@+id/firstView"
@@ -153,11 +155,11 @@
         android:id="@+id/or"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="40dp"
         android:text="ИЛИ"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/signIn" />
 
     <View
         android:id="@+id/secondView"
@@ -194,7 +196,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="60dp"
         android:backgroundTint="@color/white"
         android:drawableLeft="@drawable/ic_facebook"
         android:drawableTint="@color/mainLight"
@@ -220,15 +221,16 @@
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
         android:padding="0dp"
         android:paddingStart="4dp"
         android:text="Зарегистрироваться"
         android:textAllCaps="false"
+        app:layout_constraintVertical_chainStyle="packed"
         android:textColor="@color/additionalColor"
         app:layout_constraintBottom_toTopOf="@id/signInAsGuest"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/doNotHave" />
+        app:layout_constraintStart_toEndOf="@id/doNotHave"
+        app:layout_constraintTop_toBottomOf="@+id/signInWithFacebook" />
 
 
     <Button
@@ -244,6 +246,7 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signUp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,12 +3,11 @@ package com.worldwidemobiledevelopment.recipes.view.splash
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.worldwidemobiledevelopment.recipes.Application
 import com.worldwidemobiledevelopment.recipes.MainActivity
 import com.worldwidemobiledevelopment.recipes.R
-import com.worldwidemobiledevelopment.recipes.repository.FirebaseHelper
+import com.worldwidemobiledevelopment.recipes.repository.IRepository
 import com.worldwidemobiledevelopment.recipes.view.registration.RegistrationActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
@@ -27,8 +26,7 @@ const val IS_FIRST_LAUNCH = "FirstLaunch"
 
 class SplashActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var firebaseHelper: FirebaseHelper
+    @Inject lateinit var repository: IRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +38,7 @@ class SplashActivity : AppCompatActivity() {
             withContext(Main) {
                 if (appPreferences.getBoolean(IS_FIRST_LAUNCH, false)) {
                     startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                    repository.getUser()
                     finish()
                 } else {
                     startActivity(Intent(this@SplashActivity, RegistrationActivity::class.java))

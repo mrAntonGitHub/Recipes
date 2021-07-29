@@ -30,7 +30,8 @@
         android:elevation="1dp"
         android:hint="@string/email"
         app:boxStrokeColor="@color/mainLight"
-        app:boxStrokeErrorColor="@color/white"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
@@ -42,7 +43,7 @@
             android:backgroundTint="@color/mainLight"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/gray"
+            android:drawableTint="@color/mainLight"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,20 +53,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:autofillHints="Пароль"
         android:elevation="1dp"
         android:hint="Пароль"
         android:inputType="textPassword"
         app:boxStrokeColor="@color/mainLight"
-        app:boxStrokeErrorColor="@color/white"
-        app:errorTextColor="@color/mainDark"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emailLayout"
-
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/mainLight">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/gray"
+            android:drawableTint="@color/mainLight"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,7 +92,6 @@
         android:id="@+id/agreeToProcessingPD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="Согласен на обработку"
         app:layout_constraintStart_toStartOf="@id/passwordLayout"
         app:layout_constraintTop_toBottomOf="@+id/message" />
@@ -100,9 +99,10 @@
     <TextView
         android:id="@+id/agreement"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="20dp"
+        android:gravity="center"
         android:text="Персональных данных"
         android:textColor="@color/additionalColor"
         app:layout_constraintBottom_toBottomOf="@id/agreeToProcessingPD"

@@ -11,27 +11,56 @@
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_profileFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            android:id="@+id/action_profileFragment_to_followAndFollowersFragment"
+            app:destination="@id/followAndFollowersFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_profileFragment_to_newRecipeFragment"
+            app:destination="@id/newRecipeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/followAndFollowersFragment"
+        android:name="com.worldwidemobiledevelopment.recipes.view.profile.FollowAndFollowersFragment"
+        android:label="follow_and_followers_fragment"
+        tools:layout="@layout/follow_and_followers_fragment" >
+        <action
+            android:id="@+id/action_followAndFollowersFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="containerId"
+            app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/signUpFragment"
-        android:name="com.worldwidemobiledevelopment.recipes.view.registration.SignUpEmailFragment"
-        android:label="SignUpFragment" >
+        android:id="@+id/newRecipeFragment"
+        android:name="com.worldwidemobiledevelopment.recipes.view.profile.newRecipe.NewRecipeFragment"
+        android:label="new_recipe_fragment"
+        tools:layout="@layout/new_recipe_fragment" >
         <action
-            android:id="@+id/action_signUpFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/signInFragment"
-        android:name="com.worldwidemobiledevelopment.recipes.view.registration.SignInFragment"
-        android:label="SignInFragment" >
-        <action
-            android:id="@+id/action_signInFragment_to_profileFragment"
+            android:id="@+id/action_newRecipeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
         <action
-            android:id="@+id/action_signInFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+            android:id="@+id/action_newRecipeFragment_to_imagePagerFragment"
+            app:destination="@id/imagePagerFragment" />
+        <argument
+            android:name="recipeLink"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/imagePagerFragment"
+        android:name="com.worldwidemobiledevelopment.recipes.view.imagePager.ImagePagerFragment"
+        android:label="image_pager_fragment"
+        tools:layout="@layout/image_pager_fragment" >
+        <action
+            android:id="@+id/action_imagePagerFragment_to_newRecipeFragment"
+            app:destination="@id/newRecipeFragment" />
+        <argument
+            android:name="uris" />
     </fragment>
 
 

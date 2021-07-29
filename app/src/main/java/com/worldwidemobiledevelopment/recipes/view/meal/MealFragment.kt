@@ -51,7 +51,7 @@ class MealFragment : Fragment(), IngredientsAdapter.IngredientsAction,
         setupImagesSet()
         setupIngredients(viewModel.ingredientsList)
         setupCookingSteps(viewModel.cookingSteps)
-        setupComments(viewModel.commetns)
+//        setupComments(viewModel.commetns)
 
 
 

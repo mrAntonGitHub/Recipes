@@ -29,7 +29,6 @@ open class CardItem(private val recipe: Recipe, private val mealAction: MealActi
         viewBinding.apply {
 
             ivLike.isSelected = likedListIds.contains(recipe)
-            ivBookmark.isSelected = bookedListIds.contains(recipe)
 
             mealCard.setOnClickListener {
                 mealAction.mealClicked(recipe)
@@ -45,21 +44,10 @@ open class CardItem(private val recipe: Recipe, private val mealAction: MealActi
 //                mealAction.mealLiked(recipe)
             }
 
-            ivBookmark.setOnClickListener {
-                if (it.isSelected) {
-                    bookedListIds.remove(recipe)
-                } else {
-                    bookedListIds.add(recipe)
-                }
-                it.isSelected = !it.isSelected
 
-//                mealAction.addToBookmarkClicked(recipe)
-            }
+            tvkcal.text = "${recipe.kcal} ккал.}"
 
-            val split = recipe.caloriesInfoPerServing.split("[:,]".toRegex())
-            tvkcal.text = "${split[3]} ${split[2]}"
-
-            cookingTime.text = recipe.cookingMinutes.toInt().toString() + " мин."
+            cookingTime.text = recipe.cooking_minutes.toString() + " мин."
 
         }
 

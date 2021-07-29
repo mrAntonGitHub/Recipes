@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/userLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/current_level"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/userLevelProgress"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:progress="40"
+            android:max="100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userLevel" />
+
+        <TextView
+            android:id="@+id/progressValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="40/100"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/userLevelProgress"
+            app:layout_constraintEnd_toEndOf="@id/userLevelProgress" />
+
+        <TextView
+            android:id="@+id/currentLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Любитель"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/userLevelProgress"
+            app:layout_constraintTop_toBottomOf="@id/userLevelProgress" />
+
+        <TextView
+            android:id="@+id/nextLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Знаток"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/userLevelProgress"
+            app:layout_constraintTop_toBottomOf="@id/userLevelProgress" />
+
+        <TextView
+            android:id="@+id/receivePoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Зачем нужны баллы?"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/currentLevel" />
+
+        <TextView
+            android:id="@+id/receivePointsDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Баллы показывают ваш рейтинг другим пользоватлем. Чем больше у Вас рейтинг - тем большее влияние Вы оказываете на рейтинг блюда"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/receivePoints" />
+
+        <TextView
+            android:id="@+id/getPointsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Как получить баллы?"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/receivePointsDescription" />
+
+        <TextView
+            android:id="@+id/getPointsDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Практически за каждое действие Вы будете получать баллы. Ставьте лайки, комментируйте или дополняйте рецепты, сообщайте о неточностях в блюдах и многое другое.\n\nИнормацию о получении баллов вы будете видеть на экране во время совершения каких-то действий"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/getPointsLabel" />
+
+        <Button
+            android:id="@+id/close"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_round_button"
+            android:text="Понятно"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:theme="@style/Theme.Recipes.ActionButton"
+            app:layout_constraintTop_toBottomOf="@id/getPointsDescription"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

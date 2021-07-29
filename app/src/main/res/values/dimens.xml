@@ -20,5 +20,8 @@
     <dimen name="app_bar_height">180dp</dimen>
 
 
+    <dimen name="bottom_sheet_image_pick_peek_height">480dp</dimen>  <!-- The original BottomSheet height when it appears -->
+    <dimen name="bottom_sheet_image_pick_column_size">120dp</dimen>
+
     <dimen name="meal_elements_padding">10dp</dimen>
 </resources>

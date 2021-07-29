@@ -31,7 +31,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="6dp"
                     android:gravity="center"
-                    android:text="Доктор Хауз"
+                    android:text="Иванов Иван"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 

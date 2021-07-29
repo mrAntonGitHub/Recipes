@@ -2,21 +2,20 @@ package com.worldwidemobiledevelopment.recipes.view.home
 
 import android.app.Activity
 import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.google.firebase.FirebaseException
-import com.google.firebase.FirebaseTooManyRequestsException
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.worldwidemobiledevelopment.recipes.Application
-import com.worldwidemobiledevelopment.recipes.MainActivity
-import com.worldwidemobiledevelopment.recipes.repository.FirebaseHelper
+import com.worldwidemobiledevelopment.recipes.data.Recipe
+import com.worldwidemobiledevelopment.recipes.data.StepRight
 import com.worldwidemobiledevelopment.recipes.repository.Repository
+import com.worldwidemobiledevelopment.recipes.repository.firebaseRepository.FirebaseAuthorization
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -31,17 +30,31 @@ class HomeViewModel : ViewModel(), FirebasePhoneAuthorization {
     lateinit var repository: Repository
 
     @Inject
-    lateinit var firebaseHelper: FirebaseHelper
+    lateinit var firebaseAuthorization: FirebaseAuthorization
 
     private val _b = MutableLiveData<List<String>>()
-    val b : LiveData<List<String>>
+    val b: LiveData<List<String>>
         get() = _b
 
 //    var menuAdapter: MenuAdapter? = null
 
     init {
         Application.application.appComponent.inject(this)
-        Log.d("HomeViewModel", "${firebaseHelper.currentUser()}")
+
+        val list = listOf<StepRight>(
+            StepRight("adsa`dsasdads", null, null)
+        )
+//        val recipeRight = Recipe(
+//            "Винегрет",
+//            "Some description",
+//            list,
+//            ingredients_list = listOf(mapOf("Carrot" to "40 g"))
+//        )
+        //CoroutineScope(IO).launch { repository.firebaseRepository.pushRecipe(recipeRight) }
+        CoroutineScope(IO).launch {
+//            repository.firebaseRepository.getUsersRecipes()
+        }
+
 //        viewModelScope.launch {
 //            repository.getFoo()
 //                .collect {
@@ -50,16 +63,14 @@ class HomeViewModel : ViewModel(), FirebasePhoneAuthorization {
 //        }
 
 
-
     }
 
-    fun verifyNumber(activity: Activity, number: String){
-        firebaseHelper.phoneNumberVerification(activity, number, verificationCallback)
+    fun verifyNumber(activity: Activity, number: String) {
     }
 
 
     override val verificationCallback: PhoneAuthProvider.OnVerificationStateChangedCallbacks
-        get() = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
+        get() = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 Log.e("HomeViewModel.kt", "onVerificationCompleted")
             }
@@ -68,12 +79,12 @@ class HomeViewModel : ViewModel(), FirebasePhoneAuthorization {
                 Log.e("HomeViewModel.kt", "onVerificationFailed")
             }
 
-            override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
-                // Code was sent
-                Log.e("FirebaseHelper.kt", "onCodeSent")
-
+            override fun onCodeSent(
+                verificationId: String,
+                token: PhoneAuthProvider.ForceResendingToken
+            ) {
                 CoroutineScope(IO).launch {
-                    for (i in 0..60){
+                    for (i in 0..60) {
                         delay(1_000)
                         Log.e("HomeViewModel.kt", i.toString())
                     }
@@ -87,54 +98,13 @@ class HomeViewModel : ViewModel(), FirebasePhoneAuthorization {
         }
 
 
-    val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+}
 
-        override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-            // This callback will be invoked in two situations:
-            // 1 - Instant verification. In some cases the phone number can be instantly
-            //     verified without needing to send or enter a verification code.
-            // 2 - Auto-retrieval. On some devices Google Play services can automatically
-            //     detect the incoming verification SMS and perform verification without
-            //     user action.
-            Log.e("FirebaseHelper.kt", "onVerificationCompleted")
-            firebaseHelper.signInWithPhoneAuthCredential(credential)
-        }
-
-        override fun onVerificationFailed(exception: FirebaseException) {
-            // This callback is invoked in an invalid request for verification is made,
-            // for instance if the the phone number format is not valid.
-            if (exception is FirebaseAuthInvalidCredentialsException) {
-                // Invalid request
-                Log.e("FirebaseHelper.kt", "onVerificationFailed Invalid request")
-            } else if (exception is FirebaseTooManyRequestsException) {
-                // The SMS quota for the project has been exceeded
-                Log.e("FirebaseHelper.kt", "onVerificationFailed The SMS quota for the project has been exceeded")
-            }
-
-            // Show a message and update the UI
-        }
-
-        override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
-            // The SMS verification code has been sent to the provided phone number, we
-            // now need to ask the user to enter the code and then construct a credential
-            // by combining the code with a verification ID.
-
-
-
-            Log.e("FirebaseHelper.kt", "onCodeSent")
-            // Save verification ID and resending token so we can use them later
-
-//            storedVerificationId = verificationId
-//            resendToken = token
-        }
-    }
-
-    // Dimensions
+// Dimensions
 //    var smallItemHeight = context.resources.getDimensionPixelSize(R.dimen.menu_small_icon_height)
 //    var mediumItemHeight = context.resources.getDimensionPixelSize(R.dimen.menu_middle_icon_height)
 //    var longItemHeight = context.resources.getDimensionPixelSize(R.dimen.menu_long_icon_height)
 //    var menuItemsSpace = context.resources.getDimensionPixelSize(R.dimen.menu_items_spaces)
-
 
 
 //    fun initMenu(){
@@ -169,4 +139,3 @@ class HomeViewModel : ViewModel(), FirebasePhoneAuthorization {
 //                PopularMeal(8, "Напитки", R.drawable.ic_beverage),
 //            )
 //    }
-}
